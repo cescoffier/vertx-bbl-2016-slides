@@ -14,7 +14,7 @@
 //
 {
   "variables": {
-    "vertx.version": "3.4.0-SNAPSHOT",
+    "vertx.version": "3.4.0.Beta1",
     "netty.version": "1.1.33.Fork21"
   },
   "dependencies": [
@@ -96,7 +96,7 @@
       "groupId": "io.vertx",
       "artifactId": "vertx-rx-java",
       "version": "${vertx.version}",
-      "included": false
+      "included": true
     },
     {
       "groupId": "io.vertx",
