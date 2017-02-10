@@ -23,7 +23,7 @@ public class A_HTTPServer {
           String date = formatter.format(new Date());
           request.response()
               .putHeader("Access-Control-Allow-Origin", "*")
-              .end("world ! <br> " + date + "<br>" + Thread.currentThread().getName() );
+              .end("Snowcamp ! <br> " + date + "<br>" + Thread.currentThread().getName() );
         })
         .listen(8081, ar -> {
           if (ar.failed()) {

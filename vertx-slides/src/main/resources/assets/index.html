@@ -146,6 +146,24 @@
                      data-block-id="d5885db0e2cc905d730992f70c865965">
                     <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
                          style="z-index: 11; text-align: left;">
+                        <h1>Distributed</h1>
+
+                        <blockquote>
+                            You know you have a distributed system when the crash of a <strong
+                                style="color: #B21A0F">microservice</strong> you've never heards
+                            of stops you from getting any work done.&rdquo; <br/>(Everyone having developed microservices)
+                        </blockquote>
+                    </div>
+                </div>
+            </section>
+
+            <section class="has-light-background" data-background-color="#fafafa"
+                     data-background-image="title-textpresentation-title/1748213-drawing2.svg"
+                     data-id="8ebbf624c8a3877f011f5e5ed93c3362">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 915px; left: 45px; top: 10%;"
+                     data-block-id="d5885db0e2cc905d730992f70c865965">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                         style="z-index: 11; text-align: left;">
                         <h1>Reactive Systems</h1>
 
                         <ul>
@@ -478,10 +496,10 @@ doSomething(a, b, // Params
        // Result handler
     });
 
-// Asynchronous development model - future variant
-Future&lt;X&gt; future = doSomething(a, b);
-future.setHandler(
-    ar -> {  /* Completion handler */ });
+// Asynchronous development model - RX variant
+Single&lt;X&gt; single = rxDoSomething(a, b);
+single.subscribe(
+    r -> {  /* Completion handler */ });
                 </code></pre>
                     </div>
                 </div>
@@ -629,16 +647,11 @@ client.get(SERVICE_PORT, SERVICE_HOST, "/")
                         <h1>Service Discovery</h1>
 
                         <pre><code class="hljs java">
-HttpEndpoint.getWebClient(discovery,
-    new JsonObject().put("name", "vertx-http-server"),
-    result -> {
-        if (result.failed()) {
-          rc.response().end("D'oh no matching service");
-          return;
-        }
-        WebClient client = result.result();
+HttpEndpoint.rxGetWebClient(discovery,
+    svc ->  svc.equals("vertx-http-server"))
+    .subscribe( client -> {
         client.get("/").send(ar -> {
-            String body = ar.result().bodyAsString();
+                String body = ar.result().bodyAsString();
         });
       });
 </code></pre>
@@ -916,6 +929,28 @@ doSomethingAsync(param1, param2,
       System.out.println("Everything fine ! ");
     }
 });</code></pre>
+                    </div>
+                </div>
+            </section>
+
+            <section class="has-light-background" data-background-color="#fafafa"
+                     data-background-image="title-textpresentation-title/1748213-drawing2.svg"
+                     data-id="8ebbf624c8a3877f011f5e5ed93c3362">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 915px; left: 45px; top: 10%;"
+                     data-block-id="d5885db0e2cc905d730992f70c865965">
+                    <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
+                         style="z-index: 11; text-align: left;">
+                        <h1>Managing failures</h1>
+                        <p>Distributed communication may fail</p>
+                        <p><code>Single / Observable</code> let us manage these failures:</p>
+
+                        <pre><code class="hljs java" data-trim data-noescape="">
+doSomethingAsync(param1, param2)
+  .subscribe(
+    r -> System.out.println("Everything fine ! "),
+    e -> System.out.println("D'oh, it has failed !")
+);
+</code></pre>
                     </div>
                 </div>
             </section>
@@ -1274,17 +1309,12 @@ cb.executeWithFallback(future -> {
             <section class="has-light-background" data-background-color="#fafafa"
                      data-background-image="title-textpresentation-title/1748213-drawing2.svg"
                      data-id="8ebbf624c8a3877f011f5e5ed93c3362">
-                <div class="sl-block" data-block-type="text" style="height: auto; width: 880px; left: 40px; top: 10%;"
-                     data-block-id="02c953fbbd72449daff3023684040e0f">
+                <div class="sl-block" data-block-type="text" style="height: auto; width: 915px; left: 45px; top: 10%;"
+                     data-block-id="d5885db0e2cc905d730992f70c865965">
                     <div class="sl-block-content" data-placeholder-tag="p" data-placeholder-text="Text"
-                         style="z-index: 11; text-align: center; font-size: 149%;">
-                        <h2>Wanna see more ?</h2>
-                        <ul>
-                            <li>Modern app programming with RxJava and Vert.x - Tomorrow at 11:30 c228</li>
-                            <li>The reactive landscape - Tomorrow at 12:30 c228</li>
-                            <li>Reactive Systems with Eclipse Vert.x and Red Hat OpenShift (live coding) - Tomorrow at
-                                16:30 c228</li>
-                        </ul>
+                         style="z-index: 11; text-align: left;">
+                        <h1>Reactive Systems + Reactive Programming</h1>
+                        <img src="img/reactive-prog-and-system.png" width="90%"/>
                     </div>
                 </div>
             </section>
