@@ -17,7 +17,7 @@ public class A_HttpServer {
 
     vertx.createHttpServer()
         .requestHandler(request -> {
-          //fault();
+//          fault();
           request.response()
               .putHeader("Access-Control-Allow-Origin", "*")
               .end("World ! ("
